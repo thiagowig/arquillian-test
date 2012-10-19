@@ -1,13 +1,11 @@
 package br.com.arkhi.test.arquillian.entity;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -20,17 +18,17 @@ public class Cerveja {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="sq_cerveja")
 	private Long id;
 	
-	@Column(nullable=false)
+	@Column(nullable=false, unique=true)
 	private String nome;
 	
-	@ManyToMany
-	private List<Malte> maltes;
+	@ManyToOne
+	private Malte malte;
 	
-	@ManyToMany
-	private List<Lupulo> lupulos;
+	@ManyToOne
+	private Lupulo lupulo;
 	
-	@ManyToMany
-	private List<Levedo> levedos;
+	@ManyToOne
+	private Levedo levedo;
 
 	public Long getId() {
 		return id;
@@ -40,30 +38,6 @@ public class Cerveja {
 		this.id = id;
 	}
 
-	public List<Malte> getMaltes() {
-		return maltes;
-	}
-
-	public void setMaltes(List<Malte> maltes) {
-		this.maltes = maltes;
-	}
-
-	public List<Lupulo> getLupulos() {
-		return lupulos;
-	}
-
-	public void setLupulos(List<Lupulo> lupulos) {
-		this.lupulos = lupulos;
-	}
-
-	public List<Levedo> getLevedos() {
-		return levedos;
-	}
-
-	public void setLevedos(List<Levedo> levedos) {
-		this.levedos = levedos;
-	}
-	
 	public String getNome() {
 		return nome;
 	}
@@ -72,29 +46,28 @@ public class Cerveja {
 		this.nome = nome;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
+	public Malte getMalte() {
+		return malte;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Cerveja other = (Cerveja) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
+	public void setMalte(Malte malte) {
+		this.malte = malte;
+	}
+
+	public Lupulo getLupulo() {
+		return lupulo;
+	}
+
+	public void setLupulo(Lupulo lupulo) {
+		this.lupulo = lupulo;
+	}
+
+	public Levedo getLevedo() {
+		return levedo;
+	}
+
+	public void setLevedo(Levedo levedo) {
+		this.levedo = levedo;
 	}
 	
 	
