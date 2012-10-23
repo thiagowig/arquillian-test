@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<jsp:useBean id="controller" class="br.com.arkhi.test.arquillian.controller.CervejaController"/>
+<jsp:useBean id="entitiesCache" class="br.com.arkhi.test.arquillian.cache.EntitiesCache"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,59 +11,50 @@
 <body>
 
 	<div style="margin-left: 20px; margin-top: 20px;">
-		<c:if test="${param.warningMessage != null}">
-		    <span class="label label-warning">${param.warningMessage}</span>
-		</c:if>
-		
-		<c:if test="${param.errorMessage  != null}">
-		    <span class="label label-important">${param.errorMessage}</span>
-		</c:if>
-		
-		<c:if test="${param.successMessage  != null}">
-		    <span class="label label-success">${param.successMessage}</span>
-		</c:if>
-		
-		<form action="salvarCerveja" method="post">
+			
+		<form action="saveBeer" method="post">
 			<legend>Cadastro de cerveja</legend>
+			
+			<c:choose>
+				<c:when test="${param.warningMessage != null}"><span class="label label-warning">${param.warningMessage}<br /><br /></span></c:when>
+				<c:when test="${param.errorMessage != null}"><span class="label label-important">${param.errorMessage}<br /><br /></span></c:when>
+				<c:when test="${param.successMessage != null}"><span class="label label-success">${param.successMessage}<br /><br /></span></c:when>
+			</c:choose>
+			
 			<table>
+								
 				<tr>
-					<td></td>
+					<td>* Nome da Cerveja:</td>
 					<td>
-					</td>
-				</tr>
-				
-				<tr>
-					<td>Nome da Cerveja:</td>
-					<td>
-						<input type="text" name="nomeCerveja" /> 
+						<input type="text" name="beerName" /> 
 					</td>
 				</tr>
 				<tr>
-					<td>Malte:</td>
+					<td>* Malte:</td>
 					<td>
-						<select name="malte">			
-							<c:forEach var="malte" items="${controller.maltes}">
-							    <option value="${malte.id}" >${malte.nome}</option>
+						<select name="malt">			
+							<c:forEach var="malt" items="${entitiesCache.malts}">
+							    <option value="${malt.id}" >${malt.name}</option>
 							</c:forEach>
 						</select>
 					</td>
 				</tr>
 				<tr>
-					<td>Lúpulo:</td>
+					<td>* Lúpulo:</td>
 					<td>
-						<select name="lupulo">			
-							<c:forEach var="lupulo" items="${controller.lupulos}">
-							    <option value="${lupulo.id}" >${lupulo.nome}</option>
+						<select name="hop">			
+							<c:forEach var="hop" items="${entitiesCache.hops}">
+							    <option value="${hop.id}" >${hop.name}</option>
 							</c:forEach>
 						</select>
 					</td>
 				</tr>
 				<tr>
-					<td>Levedo:</td>
+					<td>* Levedo:</td>
 					<td>
-						<select name="levedo">			
-							<c:forEach var="levedo" items="${controller.levedos}">
-							    <option value="${levedo.id}" >${levedo.nome}</option>
+						<select name="yeast">			
+							<c:forEach var="yeast" items="${entitiesCache.yeasts}">
+							    <option value="${yeast.id}" >${yeast.name}</option>
 							</c:forEach>
 						</select>
 					</td>

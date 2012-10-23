@@ -75,6 +75,11 @@
 			<version>1.6.4</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.extension</groupId>
+			<artifactId>arquillian-performance-impl</artifactId>
+			<version>1.0.0.CR1</version>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -86,7 +91,14 @@
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
+			<dependency>
+		        <groupId>org.jboss.arquillian.container</groupId>
+		        <artifactId>arquillian-openshift-express</artifactId>
+		        <version>1.0.0.Alpha1</version>
+		        <scope>test</scope>
+    		</dependency>
 		</dependencies>
+		
 	</dependencyManagement>
 
 	<profiles>
@@ -112,6 +124,24 @@
 					<scope>test</scope>
 				</dependency>
 			</dependencies>
+		</profile>
+		<profile>
+		    <id>arquillian-openshift-express</id>
+		    <dependencies>
+		        <dependency>
+		            <groupId>org.jboss.spec</groupId>
+		            <artifactId>jboss-javaee-6.0</artifactId>
+		            <version>1.0.0.Final</version>
+		            <type>pom</type>
+		            <scope>provided</scope>
+		        </dependency>
+		
+		        <dependency>
+		            <groupId>org.jboss.arquillian.container</groupId>
+		            <artifactId>arquillian-openshift-express</artifactId>
+		            <scope>test</scope>
+		        </dependency>
+		    </dependencies>
 		</profile>
 	</profiles>
 

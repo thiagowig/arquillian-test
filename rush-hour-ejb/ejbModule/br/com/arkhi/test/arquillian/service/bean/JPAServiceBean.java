@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import br.com.arkhi.test.arquillian.exception.DataValidationException;
 import br.com.arkhi.test.arquillian.service.GenericService;
 
 /*
@@ -27,22 +28,24 @@ public abstract class JPAServiceBean<Type, PK extends Serializable> implements G
 	}
 	
 	/**
+	 * @throws DataValidationException 
 	 * 
 	 */
 	@Override
-	public Type create(Type object) {
-		this.validadeInsert(object);
+	public Type create(Type object) throws DataValidationException {
+		this.validateInsert(object);
 		this.getEntityManager().persist(object);
 		
 		return object;
 	}
 
 	/**
+	 * @throws DataValidationException 
 	 * 
 	 */
 	@Override
-	public void update(Type object) {
-		this.validadeInsert(object);
+	public void update(Type object) throws DataValidationException {
+		this.validateInsert(object);
 		this.getEntityManager().merge(object);
 	}
 
@@ -50,8 +53,9 @@ public abstract class JPAServiceBean<Type, PK extends Serializable> implements G
 	 * 
 	 * @param object
 	 * @return
+	 * @throws DataValidationException 
 	 */
-	protected void validadeInsert(Type object) {
+	protected void validateInsert(Type object) throws DataValidationException {
 	}
 
 	/**
