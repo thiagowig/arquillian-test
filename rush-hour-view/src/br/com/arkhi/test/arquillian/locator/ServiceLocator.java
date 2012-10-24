@@ -14,16 +14,18 @@ public final class ServiceLocator {
 	private static ServiceLocator serviceLocator;
 	
 	public static ServiceLocator getInstance() {
-		if (serviceLocator == null) {
-			serviceLocator = new ServiceLocator();
+		if (ServiceLocator.serviceLocator == null) {
+			ServiceLocator.serviceLocator = new ServiceLocator();
 		}
-		return serviceLocator;
+		
+		return ServiceLocator.serviceLocator;
 	}
 	
 	public Object returnInstance(String jndiName) {		
 		try {
 			Context context = new InitialContext();
 			return context.lookup(jndiName);
+			
 		} catch (NamingException e) {
 			e.printStackTrace();
 			return null;

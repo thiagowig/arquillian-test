@@ -4,7 +4,6 @@ import junit.framework.Assert;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.arquillian.performance.annotation.Performance;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -26,9 +25,7 @@ public class BeerTest {
 	}
 	
 	@Test
-	@Performance(time=12000)
 	public void test() throws InterruptedException {
-		Thread.sleep(1000000);
 		Assert.assertEquals(1, 1);
 	}
 	

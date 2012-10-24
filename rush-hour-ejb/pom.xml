@@ -92,13 +92,13 @@
 				<type>pom</type>
 			</dependency>
 			<dependency>
-		        <groupId>org.jboss.arquillian.container</groupId>
-		        <artifactId>arquillian-openshift-express</artifactId>
-		        <version>1.0.0.Alpha1</version>
-		        <scope>test</scope>
-    		</dependency>
+				<groupId>org.jboss.arquillian.container</groupId>
+				<artifactId>arquillian-openshift-express</artifactId>
+				<version>1.0.0.Alpha1</version>
+				<scope>test</scope>
+			</dependency>
 		</dependencies>
-		
+
 	</dependencyManagement>
 
 	<profiles>
@@ -126,22 +126,45 @@
 			</dependencies>
 		</profile>
 		<profile>
-		    <id>arquillian-openshift-express</id>
-		    <dependencies>
-		        <dependency>
-		            <groupId>org.jboss.spec</groupId>
-		            <artifactId>jboss-javaee-6.0</artifactId>
-		            <version>1.0.0.Final</version>
-		            <type>pom</type>
-		            <scope>provided</scope>
-		        </dependency>
-		
-		        <dependency>
-		            <groupId>org.jboss.arquillian.container</groupId>
-		            <artifactId>arquillian-openshift-express</artifactId>
-		            <scope>test</scope>
-		        </dependency>
-		    </dependencies>
+			<id>jbossas-managed-7</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.jboss.spec</groupId>
+					<artifactId>jboss-javaee-6.0</artifactId>
+					<version>1.0.0.Final</version>
+					<type>pom</type>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.as</groupId>
+					<artifactId>jboss-as-arquillian-container-managed</artifactId>
+					<version>7.0.2.Final</version>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.as</groupId>
+					<artifactId>jboss-as-protocol</artifactId>
+					<version>7.1.0.Final</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>arquillian-openshift-express</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.jboss.spec</groupId>
+					<artifactId>jboss-javaee-6.0</artifactId>
+					<version>1.0.0.Final</version>
+					<type>pom</type>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.container</groupId>
+					<artifactId>arquillian-openshift-express</artifactId>
+					<version>1.0.0.Beta1</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
 		</profile>
 	</profiles>
 
