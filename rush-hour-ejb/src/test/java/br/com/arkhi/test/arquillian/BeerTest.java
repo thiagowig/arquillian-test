@@ -10,6 +10,8 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import br.com.arkhi.test.arquillian.entity.Malt;
+
 @RunWith(Arquillian.class)
 public class BeerTest {
 	
@@ -17,9 +19,8 @@ public class BeerTest {
 	public static JavaArchive createFile() {
 		JavaArchive jar = ShrinkWrap.create(JavaArchive.class);
 		
-		jar.addPackages(true, "br");
+		jar.addClass(Malt.class);
 		jar.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
-		jar.addAsManifestResource("test-persistence.xml", "persistence.xml");
 		
 		return jar;
 	}
