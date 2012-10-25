@@ -1,4 +1,4 @@
-activeProfiles=arquillian-openshift-express
+activeProfiles=jbossas-managed-7
 eclipse.preferences.version=1
 resolveWorkspaceProjects=true
 version=1
